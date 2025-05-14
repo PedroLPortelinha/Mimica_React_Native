@@ -1,4 +1,3 @@
-// app/game.tsx
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Platform, StatusBar, TextInput, ScrollView } from 'react-native';
 import { router, Stack } from 'expo-router';
@@ -6,10 +5,10 @@ import { Ionicons } from '@expo/vector-icons';
 
 const MAX_PLAYERS = 10;
 const MAX_ROUNDS = 20;
-const MAX_ROUND_TIME = 120; // Assuming seconds
+const MAX_ROUND_TIME = 120; 
 
 const GameScreen: React.FC = () => {
-  const [numPlayers, setNumPlayers] = useState('2'); // Default to a string for TextInput
+  const [numPlayers, setNumPlayers] = useState('2'); 
   const [numRounds, setNumRounds] = useState('5');
   const [roundTime, setRoundTime] = useState('60');
 
@@ -30,16 +29,9 @@ const GameScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      {/*
-        If you want to hide the header previously defined in _layout.tsx for this screen:
-        <Stack.Screen options={{ headerShown: false }} />
-        Or, if you kept headerShown: true in _layout, but want to customize title here:
-      */}
       <Stack.Screen
         options={{
-          // title: 'Configurar Jogo', // You can override title here if needed
-          headerLeft: () => null, // Explicitly remove header left (back button)
-                                  // The header itself is controlled by _layout.tsx or can be hidden here
+          headerLeft: () => null,                                   
         }}
       />
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -97,16 +89,7 @@ const GameScreen: React.FC = () => {
         >
           <Text style={styles.themeButtonText}>Escolher Tema do Jogo</Text>
           <Ionicons name="chevron-forward" size={24} color={COLORS.textWhite} />
-        </TouchableOpacity>
-
-        {/* This button is no longer needed as we have the on-screen back arrow
-        <TouchableOpacity
-          style={styles.actionButton}
-          onPress={() => router.back()}
-        >
-          <Text style={styles.actionButtonText}>Voltar</Text>
-        </TouchableOpacity>
-        */}
+        </TouchableOpacity>       
       </ScrollView>
     </SafeAreaView>
   );

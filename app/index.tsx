@@ -1,8 +1,7 @@
-// app/index.tsx
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, Dimensions, StatusBar, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router'; // <-- Import router
+import { router } from 'expo-router'; 
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
@@ -34,7 +33,7 @@ export default function Index() {
       />
       <TouchableOpacity
         style={styles.imageContainer}
-        onPress={() => console.log('Theme button pressed')} // This can remain as is or be changed later
+        onPress={() => console.log('Theme button pressed')} 
         activeOpacity={0.7}
       >
         <Image
@@ -45,7 +44,7 @@ export default function Index() {
 
       <TouchableOpacity
         style={[styles.buttonBase, styles.jogarButton]}
-        onPress={() => router.push('/game')} // <-- MODIFIED: Navigate to game screen
+        onPress={() => router.push('/game')} 
       >
         <Text style={styles.buttonText}>Jogar</Text>
       </TouchableOpacity>
@@ -54,7 +53,7 @@ export default function Index() {
         <Ionicons name="settings-sharp" size={30} color={COLORS.textWhite} style={styles.settingsIcon} />
         <TouchableOpacity
           style={[styles.buttonBase, styles.opcoesButton]}
-          onPress={() => router.push('/options')} // <-- MODIFIED: Navigate to options screen
+          onPress={() => router.push('/options')} 
         >
           <Text style={styles.buttonTextSmall}>opções</Text>
         </TouchableOpacity>

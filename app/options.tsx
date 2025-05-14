@@ -1,4 +1,3 @@
-// app/options.tsx
 import React, { useState } from 'react';
 import {
   View,
@@ -9,7 +8,7 @@ import {
   Platform,
   StatusBar,
   ScrollView,
-  TextInput, // Import TextInput
+  TextInput, 
 } from 'react-native';
 import { router, Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -114,7 +113,7 @@ const COLORS = {
   textWhite: '#FFFFFF',
   inputBorder: '#C5CAE9',
   checkboxBorder: '#B0BEC5',
-  webInputText: '#333', // For web text input
+  webInputText: '#333', 
 };
 
 const styles = StyleSheet.create({
@@ -156,7 +155,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 40,
   },
-  webVolumeInput: { // Style for the web TextInput
+  webVolumeInput: { 
     borderWidth: 1,
     borderColor: COLORS.inputBorder,
     borderRadius: 8,
@@ -165,7 +164,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: COLORS.webInputText,
     backgroundColor: '#FFF',
-    width: '100%', // Or a fixed width
+    width: '100%', 
     textAlign: 'center',
   },
   checkboxContainer: {
