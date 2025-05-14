@@ -14,8 +14,8 @@ export default function RootLayout() {
         name="game"
         options={{
           headerShown: false,
-          headerLeft: () => null, 
-          title: 'Jogo', 
+          headerLeft: () => null,
+          title: 'Jogo',
           headerStyle: { backgroundColor: '#7161EF' },
           headerTintColor: '#fff',
           headerTitleStyle: { fontWeight: 'bold' },
@@ -32,10 +32,21 @@ export default function RootLayout() {
           headerTitleStyle: { fontWeight: 'bold' },
         }}
       />
-      <Stack.Screen 
+      <Stack.Screen
         name="themeSelection"
         options={{
-          title: 'Escolher Tema', 
+          headerShown: false,
+          title: 'Escolher Tema',
+          headerStyle: { backgroundColor: '#7161EF' },
+          headerTintColor: '#fff',
+          headerTitleStyle: { fontWeight: 'bold' },
+        }}
+      />
+      <Stack.Screen 
+        name="match"
+        options={{
+          headerShown: false,
+          title: 'Partida', 
           headerStyle: { backgroundColor: '#7161EF' },
           headerTintColor: '#fff',
           headerTitleStyle: { fontWeight: 'bold' },

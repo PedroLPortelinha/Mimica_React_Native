@@ -8,7 +8,7 @@ import {
   Platform,
   StatusBar,
   ScrollView,
-  TextInput, 
+  TextInput,
 } from 'react-native';
 import { router, Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -89,16 +89,18 @@ const OptionsScreen: React.FC = () => {
         {renderVolumeControl('Volume da Música', musicVolume, setMusicVolume)}
         {renderVolumeControl('Volume do Jogo', gameVolume, setGameVolume)}
 
-        {/* Vibração */}
-        <View style={[styles.settingItem, styles.checkboxContainer]}>
-          <Text style={styles.settingLabel}>Vibração</Text>
-          <Checkbox
-            style={styles.checkbox}
-            value={vibrationEnabled}
-            onValueChange={setVibrationEnabled}
-            color={vibrationEnabled ? COLORS.accent : undefined}
-          />
-        </View>
+        {/* Vibração - Conditionally render */}
+        {Platform.OS !== 'web' && (
+          <View style={[styles.settingItem, styles.checkboxContainer]}>
+            <Text style={styles.settingLabel}>Vibração</Text>
+            <Checkbox
+              style={styles.checkbox}
+              value={vibrationEnabled}
+              onValueChange={setVibrationEnabled}
+              color={vibrationEnabled ? COLORS.accent : undefined}
+            />
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -113,7 +115,7 @@ const COLORS = {
   textWhite: '#FFFFFF',
   inputBorder: '#C5CAE9',
   checkboxBorder: '#B0BEC5',
-  webInputText: '#333', 
+  webInputText: '#333',
 };
 
 const styles = StyleSheet.create({
@@ -126,6 +128,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: 'center',
     padding: 20,
+    paddingBottom: 40, 
   },
   onScreenBackButton: {
     position: 'absolute',
@@ -155,7 +158,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 40,
   },
-  webVolumeInput: { 
+  webVolumeInput: {
     borderWidth: 1,
     borderColor: COLORS.inputBorder,
     borderRadius: 8,
@@ -164,7 +167,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: COLORS.webInputText,
     backgroundColor: '#FFF',
-    width: '100%', 
+    width: '100%',
     textAlign: 'center',
   },
   checkboxContainer: {
