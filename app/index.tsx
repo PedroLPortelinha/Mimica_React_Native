@@ -1,8 +1,10 @@
+// app/index.tsx
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, Dimensions, StatusBar, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router'; // <-- Import router
 
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window'); // Added screenHeight for potential use
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 const COLORS = {
   background: '#B79CED',
@@ -13,29 +15,26 @@ const COLORS = {
   imageOvalBorder: '#796C8C',
 };
 
-// Calculate base dimensions based on screen width
 const imageContainerBaseWidth = screenWidth * 0.65;
-const imageContainerBaseHeight = screenWidth * 0.75; // Or screenHeight * 0.4, etc. depending on desired aspect
+const imageContainerBaseHeight = screenWidth * 0.75;
 
-// --- Define Maximum dimensions for the image container ---
-const MAX_IMAGE_CONTAINER_WIDTH = 350; // Example: Max 350px wide
-const MAX_IMAGE_CONTAINER_HEIGHT = imageContainerBaseHeight * (MAX_IMAGE_CONTAINER_WIDTH / imageContainerBaseWidth); // Maintain aspect ratio, or set a fixed max height like 450
+const MAX_IMAGE_CONTAINER_WIDTH = 350;
+const MAX_IMAGE_CONTAINER_HEIGHT = imageContainerBaseHeight * (MAX_IMAGE_CONTAINER_WIDTH / imageContainerBaseWidth);
 
-// --- Define Maximum dimensions for buttons ---
-const MAX_BUTTON_WIDTH = 320; // Example: Max 320px wide for main button
-const MAX_OPCOES_BUTTON_WIDTH = 280; // Example: Max 280px wide for options button
+const MAX_BUTTON_WIDTH = 320;
+const MAX_OPCOES_BUTTON_WIDTH = 280;
 
 export default function Index() {
   return (
     <View style={styles.container}>
       <StatusBar
         barStyle="dark-content"
-        backgroundColor={ Platform.OS === 'android' ? COLORS.background : undefined } // Set for Android
+        backgroundColor={ Platform.OS === 'android' ? COLORS.background : undefined }
         translucent={Platform.OS === 'android' ? true : false}
       />
       <TouchableOpacity
         style={styles.imageContainer}
-        onPress={() => console.log('Theme button pressed')}
+        onPress={() => console.log('Theme button pressed')} // This can remain as is or be changed later
         activeOpacity={0.7}
       >
         <Image
@@ -46,7 +45,7 @@ export default function Index() {
 
       <TouchableOpacity
         style={[styles.buttonBase, styles.jogarButton]}
-        onPress={() => console.log('Jogar pressed')}
+        onPress={() => router.push('/game')} // <-- MODIFIED: Navigate to game screen
       >
         <Text style={styles.buttonText}>Jogar</Text>
       </TouchableOpacity>
@@ -55,7 +54,7 @@ export default function Index() {
         <Ionicons name="settings-sharp" size={30} color={COLORS.textWhite} style={styles.settingsIcon} />
         <TouchableOpacity
           style={[styles.buttonBase, styles.opcoesButton]}
-          onPress={() => console.log('Opções pressed')}
+          onPress={() => router.push('/options')} // <-- MODIFIED: Navigate to options screen
         >
           <Text style={styles.buttonTextSmall}>opções</Text>
         </TouchableOpacity>
@@ -71,13 +70,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-    paddingTop: Platform.OS === 'android' && StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 20, // Adjust padding considering status bar
+    paddingTop: Platform.OS === 'android' && StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 20,
   },
   imageContainer: {
-    width: imageContainerBaseWidth,    // Base width (responsive for smaller screens)
-    height: imageContainerBaseHeight,  // Base height
-    maxWidth: MAX_IMAGE_CONTAINER_WIDTH,  // Capped maximum width
-    maxHeight: MAX_IMAGE_CONTAINER_HEIGHT, // Capped maximum height
+    width: imageContainerBaseWidth,
+    height: imageContainerBaseHeight,
+    maxWidth: MAX_IMAGE_CONTAINER_WIDTH,
+    maxHeight: MAX_IMAGE_CONTAINER_HEIGHT,
     backgroundColor: COLORS.imageOvalBackground,
     borderTopLeftRadius: imageContainerBaseWidth / 2,
     borderTopRightRadius: imageContainerBaseWidth / 2,
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
     marginBottom: 18,
   },
   mainImage: {
-    width: '116%', 
+    width: '116%',
     height: '100%',
     resizeMode: 'contain',
   },
@@ -101,8 +100,8 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    width: screenWidth * 0.6, // Base width
-    maxWidth: MAX_BUTTON_WIDTH, // Capped maximum width
+    width: screenWidth * 0.6,
+    maxWidth: MAX_BUTTON_WIDTH,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -120,9 +119,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.opcoesButton,
     paddingVertical: 15,
     paddingHorizontal: 40,
-    width: screenWidth * 0.5, // Base width
-    maxWidth: MAX_OPCOES_BUTTON_WIDTH, // Capped maximum width
-    // Removed minWidth for similar reasons as buttonBase
+    width: screenWidth * 0.5,
+    maxWidth: MAX_OPCOES_BUTTON_WIDTH,
   },
   buttonText: {
     color: COLORS.textWhite,
